@@ -21,32 +21,6 @@ class home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.black,
-      //   leading: Row(
-      //     children: [
-      //       Padding(
-      //         padding: const EdgeInsets.all(20.0),
-      //         child: TextController.LargeWhite("AAYAM P.").returnText(),
-      //       )
-      //     ],
-      //   ),
-      //   actions: [
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       crossAxisAlignment: CrossAxisAlignment.end,
-      //       children: [
-      //         TextController.mediumWhite("Home").returnText(),
-      //         SizedBox(width: 20),
-      //         TextController.mediumWhite("About").returnText(),
-      //         SizedBox(width: 20),
-      //         TextController.mediumWhite("Sign In ").returnText(),
-      //         SizedBox(width: 10),
-      //       ],
-      //     )
-      //   ],
-      // ),
-
       body: Column(
         children: [
           ContainerController.sizing(
