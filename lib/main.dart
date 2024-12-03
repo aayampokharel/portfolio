@@ -82,29 +82,28 @@ Widget HelloWidget() {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Expanded(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextController.LargeWhite("Hello,  ")
-                .returnText(), //@this is to be changed into namaste, hola , other languages .
-
-            Flexible(
-                child: TextController.LargeWhite("I am Aayam Pokharel,")
-                    .returnText()),
-          ],
-        ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max, // Center both text elements
+        children: [
+          TextController.LargeWhite("Hello,  ").returnText(),
+          // Use Expanded to fill the remaining space and center the second text
+          Flexible(
+              child: TextController.LargeWhite("I am Aayam Pokharel,")
+                  .returnText()),
+        ],
       ),
       TextController.mediumWhite("A flutter & Go developer ,").returnText(),
       SizedBox(
-        height: 20,
+        height: 10,
       ),
       ContainerController.button(buttonColor: Colors.green).returnButton(
-          text: TextController.mediumWhite("review").returnText(),
-          fnctToRun: null,
-          padding: 15,
-          borderRadius: 10,
-          borderColor: Colors.black45)
+        text: TextController.mediumWhite("review").returnText(),
+        fnctToRun: null,
+        padding: 15,
+        borderRadius: 10,
+        borderColor: Colors.black45,
+      ),
     ],
   );
 }
