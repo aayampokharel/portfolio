@@ -28,6 +28,13 @@ class TextController {
     model.color = Colors.green;
   }
 
+  TextController.custom(this.text,
+      {Color color = Colors.black, double fontSize = 10}) {
+    model.text = text;
+    model.color = color;
+    model.fontSize = fontSize;
+  }
+
   Text returnText() {
     return Text(
       model.text,
@@ -35,6 +42,8 @@ class TextController {
           fontFamily: model.fontFamily,
           fontSize: model.fontSize,
           color: model.color),
+      softWrap: true,
+      overflow: TextOverflow.visible,
     );
   }
 }
