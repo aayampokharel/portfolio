@@ -67,4 +67,22 @@ class ContainerController {
       ),
     );
   }
+
+  Widget returnCard({required Widget child}) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        color: containerModel.color,
+        constraints: BoxConstraints(
+          maxHeight: containerModel.maxHeight,
+          maxWidth: containerModel.maxWidth,
+          minHeight: containerModel.minHeight,
+          minWidth: containerModel.minWidth,
+        ),
+        child: Card(
+          child: child,
+        ),
+      ),
+    );
+  }
 }

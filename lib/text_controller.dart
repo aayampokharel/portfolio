@@ -19,7 +19,7 @@ class TextController {
   }
   TextController.smallBlack(this.text) {
     model.text = text;
-    model.fontSize = 10;
+    model.fontSize = 18;
     model.color = Colors.black;
   }
   TextController.LargeGreen(this.text) {
@@ -35,13 +35,14 @@ class TextController {
     model.fontSize = fontSize;
   }
 
-  Text returnText() {
+  Text returnText({bool justify = false}) {
     return Text(
       model.text,
       style: TextStyle(
           fontFamily: model.fontFamily,
           fontSize: model.fontSize,
           color: model.color),
+      textAlign: justify ? TextAlign.justify : TextAlign.left,
       softWrap: true,
       overflow: TextOverflow.visible,
     );
