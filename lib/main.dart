@@ -26,74 +26,114 @@ class home extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-              child: ContainerController.sizing(
-                      maxHeight: 200,
-                      maxWidth: double.infinity,
-                      minHeight: 0,
-                      minWidth: 0,
-                      color: Colors.blue)
-                  .returnContainer(child: appBarRow()),
-            ),
-
-            //@this is just for setting height and width and color to container .tara appbar row sets the spacing and row to display inside the container
-
-            //~aba aaucha Hello container ========
-            ContainerController.sizing(
-                    maxHeight: 400,
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+            child: ContainerController.sizing(
+                    maxHeight: 200,
                     maxWidth: double.infinity,
                     minHeight: 0,
                     minWidth: 0,
-                    color: Colors.orange)
-                .returnContainer(
-                    child: HelloWidget()), //shows hello hola namaste like ios
-            //~aba aaucha projects collection container ========
-            TextController.LargeWhite("PROJECTS").returnText(),
+                    color: Colors.blue)
+                .returnContainer(child: appBarRow()),
+          ),
 
-            ContainerController.sizing(
-                    maxHeight: 550,
-                    maxWidth: double.infinity,
-                    minHeight: 200,
-                    minWidth: 0,
-                    color: Colors.transparent)
-                .returnCard(child: reposCard()),
-          ],
-        ),
+          //@this is just for setting height and width and color to container .tara appbar row sets the spacing and row to display inside the container
+
+          //~aba aaucha Hello container ========
+          ContainerController.sizing(
+                  maxHeight: 400,
+                  maxWidth: double.infinity,
+                  minHeight: 0,
+                  minWidth: 0,
+                  color: Colors.orange)
+              .returnContainer(
+                  child: HelloWidget()), //shows hello hola namaste like ios
+          //~aba aaucha projects collection container ========
+          TextController.LargeWhite("PROJECTS").returnText(),
+          Container(
+            height: 400,
+            child: ListView.builder(
+                itemCount: reposModelList.length,
+                itemBuilder: (builder, ind) {
+                  return ContainerController.sizing(
+                          maxHeight: 550,
+                          maxWidth: double.infinity,
+                          minHeight: 200,
+                          minWidth: 0,
+                          color: Colors.transparent)
+                      .returnCard(child: reposCard(ind));
+                }),
+          ),
+        ]),
       ),
     );
   }
 }
 
-Widget reposCard() {
+Widget reposCard(int index) {
   return Column(
     children: [
       //ddContainerController.sizing()
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Image.asset("${reposModelList[0].imgURL}", height: 200),
+        child: Image.asset("${reposModelList[index].imgURL}", height: 200),
+      ),
+      // ListView.builder(
+      //     itemCount: reposModelList.length,
+      //     scrollDirection: Axis.horizontal,
+      //     itemBuilder: (context, ind) {
+      //       var lenOfTechnologyUsed = reposModelList[ind].technologiesUsed!;
+      //       for (String val in lenOfTechnologyUsed) {
+      //         return ContainerController.button(buttonColor: Colors.blue[200])
+      //             .returnButton(
+      //                 borderRadius: 80,
+      //                 borderColor: Colors.blue[600],
+      //                 text: TextController.custom(val,
+      //                         color: Colors.black, fontSize: 15)
+      //                     .returnText(),
+      //                 fnctToRun: null);
+      //       }
+      //     }),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: technologyWidgets(index),
       ),
 
-      ///this is for flutter,go,mysql icon.
-      ContainerController.button(buttonColor: Colors.blue[200]).returnButton(
-          borderRadius: 80,
-          borderColor: Colors.blue[600],
-          text: TextController.custom(reposModelList[0].technologiesUsed![0],
-                  color: Colors.black, fontSize: 15)
-              .returnText(),
-          fnctToRun: null),
+      ///this below is for flutter,go,mysql buttons.
+
       //  ],
       Flexible(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: TextController.smallBlack(reposModelList[0].description!)
+          child: TextController.smallBlack(reposModelList[index].description!)
               .returnText(justify: true),
         ),
       ),
     ],
   );
+}
+
+List<Widget> technologyWidgets(int i) {
+  List<Widget> widgetsList = [];
+  List<String> technologies = reposModelList[i].technologiesUsed!;
+  for (String val in technologies) {
+    widgetsList.add(Padding(
+      padding: const EdgeInsets.all(5.0),
+      child:
+          ContainerController.button(
+                  buttonColor: Color.fromARGB(255, 0, 149, 255))
+              .returnButton(
+                  borderRadius: 80,
+                  borderColor: Colors.blue[600],
+                  text: TextController.custom(val,
+                          color: Color.fromARGB(255, 242, 250, 255),
+                          fontSize: 15)
+                      .returnText(),
+                  fnctToRun: null),
+    ));
+  }
+  return widgetsList;
 }
 
 // Widget reposWidgetList() {
