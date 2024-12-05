@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:port/container_controller.dart';
 import 'package:port/list_of_repos.dart';
+import 'package:port/repos_card_view.dart';
 import 'package:port/text_controller.dart';
-import 'package:port/text_model.dart';
 
 void main() {
   runApp(portfolio());
@@ -70,75 +70,6 @@ class home extends StatelessWidget {
     );
   }
 }
-
-Widget reposCard(int index) {
-  return Column(
-    children: [
-      //ddContainerController.sizing()
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Image.asset("${reposModelList[index].imgURL}", height: 200),
-      ),
-      // ListView.builder(
-      //     itemCount: reposModelList.length,
-      //     scrollDirection: Axis.horizontal,
-      //     itemBuilder: (context, ind) {
-      //       var lenOfTechnologyUsed = reposModelList[ind].technologiesUsed!;
-      //       for (String val in lenOfTechnologyUsed) {
-      //         return ContainerController.button(buttonColor: Colors.blue[200])
-      //             .returnButton(
-      //                 borderRadius: 80,
-      //                 borderColor: Colors.blue[600],
-      //                 text: TextController.custom(val,
-      //                         color: Colors.black, fontSize: 15)
-      //                     .returnText(),
-      //                 fnctToRun: null);
-      //       }
-      //     }),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: technologyWidgets(index),
-      ),
-
-      ///this below is for flutter,go,mysql buttons.
-
-      //  ],
-      Flexible(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: TextController.smallBlack(reposModelList[index].description!)
-              .returnText(justify: true),
-        ),
-      ),
-    ],
-  );
-}
-
-List<Widget> technologyWidgets(int i) {
-  List<Widget> widgetsList = [];
-  List<String> technologies = reposModelList[i].technologiesUsed!;
-  for (String val in technologies) {
-    widgetsList.add(Padding(
-      padding: const EdgeInsets.all(5.0),
-      child:
-          ContainerController.button(
-                  buttonColor: Color.fromARGB(255, 0, 149, 255))
-              .returnButton(
-                  borderRadius: 80,
-                  borderColor: Colors.blue[600],
-                  text: TextController.custom(val,
-                          color: Color.fromARGB(255, 242, 250, 255),
-                          fontSize: 15)
-                      .returnText(),
-                  fnctToRun: null),
-    ));
-  }
-  return widgetsList;
-}
-
-// Widget reposWidgetList() {
-//   return Text(child:)
-// }
 
 Widget appBarRow() {
   return Row(
