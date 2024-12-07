@@ -25,6 +25,7 @@ class portfolio extends StatelessWidget {
   }
 }
 
+//! not working for mobile phones for mobile hello widget needs to
 class home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,28 +33,40 @@ class home extends StatelessWidget {
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-            child: ContainerController.sizing(
-                    maxHeight: 200,
-                    maxWidth: double.infinity,
-                    minHeight: 0,
-                    minWidth: 0,
-                    color: Colors.blue)
-                .returnContainer(child: appBarRow()),
+          Stack(
+            //alignment: Alignment.ce,
+            children: [
+              ContainerController.sizing(
+                maxHeight: 500,
+                maxWidth: double.infinity,
+                minHeight: 0,
+                minWidth: 0,
+              ).returnContainer(img: "Photos/me4.jpeg", child: null),
+              HelloWidget(context),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                child: ContainerController.sizing(
+                        maxHeight: 200,
+                        maxWidth: double.infinity,
+                        minHeight: 0,
+                        minWidth: 0,
+                        color: Colors.blue)
+                    .returnContainer(child: appBarRow()),
+              ),
+            ],
           ),
 
           //@this is just for setting height and width and color to container .tara appbar row sets the spacing and row to display inside the container
 
           //~aba aaucha Hello container ========
-          ContainerController.sizing(
-                  maxHeight: 400,
-                  maxWidth: double.infinity,
-                  minHeight: 0,
-                  minWidth: 0,
-                  color: Colors.orange)
-              .returnContainer(
-                  child: HelloWidget()), //shows hello hola namaste like ios
+          // ContainerController.sizing(
+          //   maxHeight: 400,
+          //   maxWidth: double.infinity,
+          //   minHeight: 0,
+          //   minWidth: 0,
+          // ).returnContainer(
+          //     img: "Photos/me4.jpeg",
+          //     child: HelloWidget()), //shows hello hola namaste like ios
           //~aba aaucha projects collection container ========
           TextController.LargeWhite("PROJECTS").returnText(),
           //~=====end of text project===

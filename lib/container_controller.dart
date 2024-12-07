@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:port/Container_model.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,31 @@ class ContainerController {
     );
   }
 
-  Widget returnContainer({required Widget? child, double? borderRadius}) {
+  Widget returnContainer(
+      {required Widget? child, double? borderRadius, String? img}) {
+    if (img != null) {
+      return Container(
+        decoration: BoxDecoration(
+            color: Colors.black,
+            image: DecorationImage(
+              image: AssetImage(img),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black
+                    .withOpacity(0), // Adjust opacity to control darkness
+                BlendMode.darken, // Darkens the image
+              ),
+            ),
+            borderRadius: BorderRadius.circular(borderRadius ?? 0)),
+        constraints: BoxConstraints(
+          maxHeight: containerModel.maxHeight,
+          maxWidth: containerModel.maxWidth,
+          minHeight: containerModel.minHeight,
+          minWidth: containerModel.minWidth,
+        ),
+        child: child,
+      );
+    }
     return Container(
       decoration: BoxDecoration(
           color: containerModel.color,
