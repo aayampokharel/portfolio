@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:port/app_bar_row.dart';
 
 import 'package:port/container_controller.dart';
-import 'package:port/list_of_repos.dart';
+import 'package:port/hello_widget.dart';
+
 import 'package:port/projects_column.dart';
-import 'package:port/repos_card_view.dart';
+import 'package:port/svg_links_map.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:port/text_controller.dart';
+import 'dart:math'; //for pi
 
 void main() {
   runApp(portfolio());
@@ -74,64 +78,119 @@ class home extends StatelessWidget {
                 ]),
               ),
             ],
-          )
+          ),
+          //~end of PROJECTS===
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 25, 0, 15),
+            child:
+                TextController.LargeWhite("Technologies & Tools").returnText(),
+          ),
+          Center(
+            child: Container(
+              height: 3,
+              width: MediaQuery.of(context).size.width * 0.9,
+              color: Colors.white38,
+            ),
+          ),
+          languageLogosRow(
+            img1: svgLinksMap["dart"],
+            img2: svgLinksMap["flutter"],
+            img3: svgLinksMap["golang"],
+            img4: svgLinksMap["mysql"],
+          ),
+          languageLogosRow(
+            img2: svgLinksMap["git"],
+            img1: svgLinksMap["github"],
+            img3: svgLinksMap["postman"],
+            img4: svgLinksMap["c"],
+          ),
+
+          languageLogosRow(
+            img1: svgLinksMap["cpp"],
+            img2: svgLinksMap["vscode"],
+            img3: svgLinksMap["androidstudio"],
+            img4: svgLinksMap["html"],
+          ),
+          languageLogosRow(
+              img1: svgLinksMap["css"],
+              img2: svgLinksMap["javascript"],
+              img3: svgLinksMap["php"],
+              img4: svgLinksMap["photoshop"]),
+          languageLogosRow(
+            img1: svgLinksMap["adobexd"],
+            img2: svgLinksMap["adobeillustrator"],
+          ),
         ]),
+      ),
+    );
+  }
+
+  Widget languageLogosRow(
+      {String? img1, String? img2, String? img3, String? img4}) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        children: [
+          Expanded(child: assetSvg(img1)),
+          Expanded(child: assetSvg(img2)),
+          Expanded(child: assetSvg(img3)),
+          Expanded(child: assetSvg(img4)),
+        ],
       ),
     );
   }
 }
 
-Widget appBarRow() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      TextController.LargeWhite("  AAYAM P.").returnText(),
-      Row(
-        children: [
-          TextController.mediumWhite("HOME").returnText(),
-          const SizedBox(
-            width: 20,
-          ),
-          TextController.mediumWhite("ABOUT").returnText(),
-          const SizedBox(
-            width: 20,
-          ),
-          TextController.mediumWhite("SIGN IN").returnText(),
-          const SizedBox(
-            width: 20,
-          ),
-        ],
-      ),
-    ],
-  );
-}
+Widget assetSvg(String? string) {
+  if (string == null) {
+    return SizedBox(height: 0, width: 0);
+  }
 
-Widget HelloWidget() {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max, // Center both text elements
+  //! if not null --> below.
+  return Padding(
+    padding: const EdgeInsets.symmetric(
+        horizontal: 10.0), // Adjusts spacing between logos
+    child: LayoutBuilder(builder: (context, constraints) {
+      return Stack(
+        alignment: Alignment.center, // Centers content within the Stack
         children: [
-          TextController.LargeWhite("Hello,  ").returnText(),
-          // Use Expanded to fill the remaining space and center the second text
-          Flexible(
-              child: TextController.LargeWhite("I am Aayam Pokharel,")
-                  .returnText()),
+          ContainerController.sizing(
+                  maxHeight: 200,
+                  minHeight: 50,
+                  maxWidth: 200,
+                  minWidth: 50,
+                  color: Colors.blueAccent.withOpacity(0.2))
+              .returnContainer(child: null, borderRadius: 15.0),
+
+          // Container(
+          //   decoration: BoxDecoration(
+          //     color: Colors.blueAccent
+          //         .withOpacity(0.2), // Background color for the container
+          //     borderRadius: BorderRadius.circular(15), // Rounded corners
+
+          //   ),
+          //   height: 100, // Adjust height to fit logos nicely
+          //   width: 100, // Adjust width for proper fitting
+          // ),
+          // Rotated logo inside the container
+          Transform.rotate(
+            angle: pi / 20, // Rotate by 45 degrees
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SvgPicture.asset(
+                string,
+                semanticsLabel: "semanticText",
+                height: 150, // Control logo size
+                width: 150, // Control logo size
+                placeholderBuilder: (BuildContext context) => Container(
+                  padding: const EdgeInsets.all(30.0),
+                  child: const CircularProgressIndicator(),
+                ),
+              ),
+            ),
+          ),
         ],
-      ),
-      TextController.mediumWhite("A flutter & Go developer ,").returnText(),
-      const SizedBox(
-        height: 10,
-      ),
-      ContainerController.button(buttonColor: Colors.green).returnButton(
-        text: TextController.mediumWhite("review").returnText(),
-        fnctToRun: null,
-        padding: 15,
-        borderRadius: 10,
-        borderColor: Colors.black45,
-      ),
-    ],
+      );
+    }),
   );
 }

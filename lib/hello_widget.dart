@@ -17,7 +17,7 @@ Widget HelloWidget() {
                   .returnText()),
         ],
       ),
-      TextController.mediumWhite("A flutter & Go developer ,").returnText(),
+      TextController.mediumWhite("A Full Stack Developer ,").returnText(),
       const SizedBox(
         height: 10,
       ),

@@ -53,18 +53,18 @@ class ContainerController {
     );
   }
 
-  Widget returnContainer({
-    required Widget child,
-  }) {
+  Widget returnContainer({required Widget? child, double? borderRadius}) {
     return Container(
-      child: child,
-      color: containerModel.color,
+      decoration: BoxDecoration(
+          color: containerModel.color,
+          borderRadius: BorderRadius.circular(borderRadius ?? 0)),
       constraints: BoxConstraints(
         maxHeight: containerModel.maxHeight,
         maxWidth: containerModel.maxWidth,
         minHeight: containerModel.minHeight,
         minWidth: containerModel.minWidth,
       ),
+      child: child,
     );
   }
 
