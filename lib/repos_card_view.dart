@@ -33,8 +33,7 @@ Widget reposCard(int index, {double? containerWidth}) {
       Flexible(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: TextController.smallBlack(reposModelList[index].description! +
-                  containerWidth.toString())
+          child: TextController.smallBlack(reposModelList[index].description!)
               .returnText(justify: true),
         ),
       ),

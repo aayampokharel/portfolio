@@ -25,7 +25,8 @@ class portfolio extends StatelessWidget {
   }
 }
 
-//! not working for mobile phones for mobile hello widget needs to
+//! not working for mobile phones for mobile hello widget needs
+//! be convertd to mediumwhite text or custom one as the text is too large to fit for MOBILE phones .
 class home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -59,14 +60,12 @@ class home extends StatelessWidget {
           //@this is just for setting height and width and color to container .tara appbar row sets the spacing and row to display inside the container
 
           //~aba aaucha Hello container ========
-          // ContainerController.sizing(
-          //   maxHeight: 400,
-          //   maxWidth: double.infinity,
-          //   minHeight: 0,
-          //   minWidth: 0,
-          // ).returnContainer(
-          //     img: "Photos/me4.jpeg",
-          //     child: HelloWidget()), //shows hello hola namaste like ios
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: TextController.LargeWhite("ABOUT ME").returnText(),
+          ),
+          AboutMe(),
+
           //~aba aaucha projects collection container ========
           TextController.LargeWhite("PROJECTS").returnText(),
           //~=====end of text project===
@@ -148,6 +147,26 @@ class home extends StatelessWidget {
           Expanded(child: assetSvg(img2)),
           Expanded(child: assetSvg(img3)),
           Expanded(child: assetSvg(img4)),
+        ],
+      ),
+    );
+  }
+
+  Widget AboutMe() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        children: [
+          //   Column(
+          //     children: [
+          //     TextController.custom(
+          //             " I’m a passionate and detail-oriented full-stack developer with a will for building intuitive and engaging applications. My journey in technology has been fueled by a drive to create seamless user experiences.\n\n Currently, I’m focused on developing innovative solutions, including a messenger app that integrates real-time communication, robust backend systems, and dynamic frontend interfaces. I’m skilled in Flutter for crafting cross-platform apps and Go,MySQL for backend development, leveraging modern practices like WebSockets and dependency injection to ensure scalability and performance.\n\n ",
+          //             color: Colors.white,
+          //             fontSize: 25)
+          //         .returnText(fontFamily: "Opensans"),
+          //   ],
+          // ),
+          // Image.asset("Photos/me3.jpg"),
         ],
       ),
     );

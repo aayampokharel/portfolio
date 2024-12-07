@@ -14,6 +14,7 @@ class TextController {
   //@ aba sabbai lai esari add garera hunna .have a named constructur = .custom and inside have required params and set the values .
   TextController.LargeWhite(this.text) {
     model.text = text;
+    model.fontFamily = "Urbanist";
     model.fontSize = 40;
     model.color = Colors.white;
   }
@@ -35,10 +36,12 @@ class TextController {
     model.fontSize = fontSize;
   }
 
-  Text returnText({bool justify = false}) {
+  Text returnText({bool justify = false, String fontFamily = "Inter"}) {
+    model.fontFamily = fontFamily;
     return Text(
       model.text,
       style: TextStyle(
+          //fontFamily: "Cursive",
           fontFamily: model.fontFamily,
           fontSize: model.fontSize,
           color: model.color),

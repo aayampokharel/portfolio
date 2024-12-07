@@ -8,6 +8,6 @@ class TextModel {
   TextModel(
       {this.text = "noTextEntered",
       this.color = Colors.white,
-      this.fontFamily = "Arial",
+      this.fontFamily = "Inter",
       this.fontSize = 20});
 }
