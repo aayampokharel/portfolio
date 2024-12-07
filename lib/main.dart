@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:port/app_bar_row.dart';
 
 import 'package:port/container_controller.dart';
+import 'package:port/hello_widget.dart';
 import 'package:port/list_of_repos.dart';
 import 'package:port/repos_card_view.dart';
 import 'package:port/text_controller.dart';
@@ -50,9 +52,18 @@ class home extends StatelessWidget {
               .returnContainer(
                   child: HelloWidget()), //shows hello hola namaste like ios
           //~aba aaucha projects collection container ========
-          TextController.LargeWhite("PROJECTS").returnText(),
-          Container(
-            height: 400,
+
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextController.LargeWhite("PROJECTS").returnText(),
+          ),
+          ContainerController.sizing(
+                  maxHeight: 400,
+                  minHeight: 0,
+                  maxWidth: MediaQuery.of(context).size.width * 0.90,
+                  minWidth: 0,
+                  color: Colors.black87)
+              .returnContainer(
             child: ListView.builder(
                 itemCount: reposModelList.length,
                 itemBuilder: (builder, ind) {
@@ -69,59 +80,4 @@ class home extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget appBarRow() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      TextController.LargeWhite("  AAYAM P.").returnText(),
-      Row(
-        children: [
-          TextController.mediumWhite("HOME").returnText(),
-          const SizedBox(
-            width: 20,
-          ),
-          TextController.mediumWhite("ABOUT").returnText(),
-          const SizedBox(
-            width: 20,
-          ),
-          TextController.mediumWhite("SIGN IN").returnText(),
-          const SizedBox(
-            width: 20,
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
-Widget HelloWidget() {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max, // Center both text elements
-        children: [
-          TextController.LargeWhite("Hello,  ").returnText(),
-          // Use Expanded to fill the remaining space and center the second text
-          Flexible(
-              child: TextController.LargeWhite("I am Aayam Pokharel,")
-                  .returnText()),
-        ],
-      ),
-      TextController.mediumWhite("A flutter & Go developer ,").returnText(),
-      const SizedBox(
-        height: 10,
-      ),
-      ContainerController.button(buttonColor: Colors.green).returnButton(
-        text: TextController.mediumWhite("review").returnText(),
-        fnctToRun: null,
-        padding: 15,
-        borderRadius: 10,
-        borderColor: Colors.black45,
-      ),
-    ],
-  );
 }

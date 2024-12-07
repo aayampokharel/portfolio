@@ -38,8 +38,6 @@ class ContainerController {
         fnctToRun?.call(indexOfReposInList ?? 0);
         //@ this fnct runs if itsnot null.
       },
-      //color: containerModel.color,
-      // padding: EdgeInsets.all(padding ?? 10),
       style: ButtonStyle(
         padding: MaterialStatePropertyAll(
           EdgeInsets.all(padding ?? 10),
