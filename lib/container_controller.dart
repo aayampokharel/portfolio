@@ -28,17 +28,16 @@ class ContainerController {
   Widget returnButton({
     required Text text,
     required Function? fnctToRun,
+    int? indexOfReposInList,
     double? padding,
     double? borderRadius,
     Color? borderColor,
   }) {
     return ElevatedButton(
       onPressed: () {
-        fnctToRun?.call();
+        fnctToRun?.call(indexOfReposInList ?? 0);
         //@ this fnct runs if itsnot null.
       },
-      //color: containerModel.color,
-      // padding: EdgeInsets.all(padding ?? 10),
       style: ButtonStyle(
         padding: MaterialStatePropertyAll(
           EdgeInsets.all(padding ?? 10),
