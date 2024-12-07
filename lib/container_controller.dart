@@ -11,8 +11,8 @@ class ContainerController {
       double? minWidth,
       double? minHeight,
       Color? color}) {
-    containerModel.maxHeight = maxHeight ?? 0;
-    containerModel.maxWidth = maxWidth ?? 0;
+    containerModel.maxHeight = maxHeight ?? double.infinity;
+    containerModel.maxWidth = maxWidth ?? double.infinity;
     containerModel.minHeight = minHeight ?? 0;
     containerModel.minWidth = minWidth ?? 0;
     containerModel.color = color ?? Colors.black;
@@ -24,7 +24,6 @@ class ContainerController {
     containerModel.color = buttonColor ?? Colors.transparent;
   }
 
-  //below button ko lagi mathi chuteko bata we need  to have as parameters: border radius, text, padding ,
   Widget returnButton({
     required Text text,
     required Function? fnctToRun,
@@ -54,7 +53,9 @@ class ContainerController {
     );
   }
 
-  Widget returnContainer({required Widget child}) {
+  Widget returnContainer({
+    required Widget child,
+  }) {
     return Container(
       child: child,
       color: containerModel.color,
@@ -71,6 +72,7 @@ class ContainerController {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        //  key: containerKey,
         color: containerModel.color,
         constraints: BoxConstraints(
           maxHeight: containerModel.maxHeight,

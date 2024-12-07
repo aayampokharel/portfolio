@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:port/app_bar_row.dart';
 
 import 'package:port/container_controller.dart';
-import 'package:port/hello_widget.dart';
 import 'package:port/list_of_repos.dart';
+import 'package:port/projects_column.dart';
 import 'package:port/repos_card_view.dart';
 import 'package:port/text_controller.dart';
 
@@ -52,32 +51,87 @@ class home extends StatelessWidget {
               .returnContainer(
                   child: HelloWidget()), //shows hello hola namaste like ios
           //~aba aaucha projects collection container ========
-
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: TextController.LargeWhite("PROJECTS").returnText(),
-          ),
-          ContainerController.sizing(
-                  maxHeight: 400,
-                  minHeight: 0,
-                  maxWidth: MediaQuery.of(context).size.width * 0.90,
-                  minWidth: 0,
-                  color: Colors.black87)
-              .returnContainer(
-            child: ListView.builder(
-                itemCount: reposModelList.length,
-                itemBuilder: (builder, ind) {
-                  return ContainerController.sizing(
-                          maxHeight: 550,
-                          maxWidth: double.infinity,
-                          minHeight: 200,
-                          minWidth: 0,
-                          color: Colors.transparent)
-                      .returnCard(child: reposCard(ind));
-                }),
-          ),
+          TextController.LargeWhite("PROJECTS").returnText(),
+          //~=====end of text project===
+          //~
+          //~
+          //~
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Flexible(
+                child: Column(children: [
+                  SizedBox(
+                    height:
+                        300, //@ dont use such hard values . use soft calculate for 300 using query . 300 is a fraction of whole height or container height so make it in fraction
+                  ),
+                  projectColumn(odd: true, color: Colors.blue[400]),
+                ]),
+              ),
+              Flexible(
+                child: Column(children: [
+                  projectColumn(odd: false, color: Colors.purple[300]),
+                ]),
+              ),
+            ],
+          )
         ]),
       ),
     );
   }
+}
+
+Widget appBarRow() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      TextController.LargeWhite("  AAYAM P.").returnText(),
+      Row(
+        children: [
+          TextController.mediumWhite("HOME").returnText(),
+          const SizedBox(
+            width: 20,
+          ),
+          TextController.mediumWhite("ABOUT").returnText(),
+          const SizedBox(
+            width: 20,
+          ),
+          TextController.mediumWhite("SIGN IN").returnText(),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
+Widget HelloWidget() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max, // Center both text elements
+        children: [
+          TextController.LargeWhite("Hello,  ").returnText(),
+          // Use Expanded to fill the remaining space and center the second text
+          Flexible(
+              child: TextController.LargeWhite("I am Aayam Pokharel,")
+                  .returnText()),
+        ],
+      ),
+      TextController.mediumWhite("A flutter & Go developer ,").returnText(),
+      const SizedBox(
+        height: 10,
+      ),
+      ContainerController.button(buttonColor: Colors.green).returnButton(
+        text: TextController.mediumWhite("review").returnText(),
+        fnctToRun: null,
+        padding: 15,
+        borderRadius: 10,
+        borderColor: Colors.black45,
+      ),
+    ],
+  );
 }

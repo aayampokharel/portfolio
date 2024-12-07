@@ -3,20 +3,6 @@ import 'package:port/repos_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
-// class ReposModel {
-//   final String topic;
-//   final List<String> technologiesUsed;
-//   final String description;
-//   final String githubLink;
-//   final Image img;
-//   ReposModel(
-//       {required this.topic,
-//       required this.githubLink,
-//       required this.description,
-//       required this.technologiesUsed,
-//       required this.img});
-// }
-
 Map<String, Map<String, dynamic>> reposMap = {
   "Live Chat App": {
     "description":

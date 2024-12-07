@@ -17,7 +17,9 @@ Future openURL(int i) async {
 
 //@ this is the simple card structure for repos .
 /// ORDER: Image , technology , description , github link .
-Widget reposCard(int index) {
+///
+Widget reposCard(int index, {double? containerWidth}) {
+  ///can remove containerWidth this was just usde or UI setting up width.
   return Column(
     children: [
       Padding(
@@ -31,7 +33,8 @@ Widget reposCard(int index) {
       Flexible(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: TextController.smallBlack(reposModelList[index].description!)
+          child: TextController.smallBlack(reposModelList[index].description! +
+                  containerWidth.toString())
               .returnText(justify: true),
         ),
       ),
@@ -44,7 +47,7 @@ Widget reposCard(int index) {
                 padding: 20,
                 borderRadius: 20,
                 borderColor: Colors.blue[900]),
-      )
+      ),
     ],
   );
 }
