@@ -88,6 +88,9 @@ flutter:
     - family: Opensans
       fonts:
         - asset: assets/fonts/Opensans.ttf
+    - family: Spacegrotesk
+      fonts:
+        - asset: assets/fonts/SpaceGrotesk.ttf
         
   #
   # For details regarding fonts from package dependencies,
