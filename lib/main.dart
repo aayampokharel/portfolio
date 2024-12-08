@@ -153,21 +153,70 @@ class home extends StatelessWidget {
   }
 
   Widget AboutMe() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
-        children: [
-          //   Column(
-          //     children: [
-          //     TextController.custom(
-          //             " I’m a passionate and detail-oriented full-stack developer with a will for building intuitive and engaging applications. My journey in technology has been fueled by a drive to create seamless user experiences.\n\n Currently, I’m focused on developing innovative solutions, including a messenger app that integrates real-time communication, robust backend systems, and dynamic frontend interfaces. I’m skilled in Flutter for crafting cross-platform apps and Go,MySQL for backend development, leveraging modern practices like WebSockets and dependency injection to ensure scalability and performance.\n\n ",
-          //             color: Colors.white,
-          //             fontSize: 25)
-          //         .returnText(fontFamily: "Opensans"),
-          //   ],
-          // ),
-          // Image.asset("Photos/me3.jpg"),
-        ],
+    return ContainerController.sizing(
+      maxHeight: 500,
+      maxWidth: double.infinity,
+      minHeight: 0,
+      minWidth: 0,
+    ).returnContainer(
+      img: "Photos/amayangri.jpg",
+      opacity: 0.7,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          children: [
+            Flexible(
+              child: TextController.custom(
+                      " I’m a passionate and detail-oriented full-stack developer with a will for building intuitive and engaging applications. My journey in technology has been fueled by a drive to create seamless user experiences.\n\n Currently, I’m focused on developing innovative solutions, including a messenger app that integrates real-time communication, robust backend systems, and dynamic frontend interfaces. I’m skilled in Flutter for crafting cross-platform apps and Go,MySQL for backend development, leveraging modern practices like WebSockets and dependency injection to ensure scalability and performance.\n\n ",
+                      color: Colors.white,
+                      fontSize: 25)
+                  .returnText(fontFamily: "Opensans"),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  colors: [Colors.black, Colors.black],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.all(8), // Padding for border effect
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      colors: [Colors.blue, Colors.purple],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.6), // Shadow color
+                        spreadRadius: 6, // Spread radius
+                        blurRadius: 15, // Blur radius
+                        offset: Offset(0, 8), // Shadow offset
+                      ),
+                    ],
+                  ),
+                  child: SizedBox(
+                    height: 500,
+                    width: 500,
+                    child: ClipOval(
+                      child: Image.asset(
+                        "Photos/me3.jpeg",
+                        width: 750,
+                        height: 750,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -55,7 +55,10 @@ class ContainerController {
   }
 
   Widget returnContainer(
-      {required Widget? child, double? borderRadius, String? img}) {
+      {required Widget? child,
+      double? borderRadius,
+      String? img,
+      double opacity = 0}) {
     if (img != null) {
       return Container(
         decoration: BoxDecoration(
@@ -64,8 +67,9 @@ class ContainerController {
               image: AssetImage(img),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
-                Colors.black
-                    .withOpacity(0), // Adjust opacity to control darkness
+                Colors.black.withOpacity((opacity >= 0 && opacity <= 1)
+                    ? opacity
+                    : 0), // Adjust opacity to control darkness
                 BlendMode.darken, // Darkens the image
               ),
             ),
