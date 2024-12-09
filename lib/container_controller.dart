@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:port/Container_model.dart';
@@ -97,21 +99,39 @@ class ContainerController {
     );
   }
 
-  Widget returnCard({required Widget child}) {
+  Widget returnCard({required Widget childs}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        //  key: containerKey,
-        color: containerModel.color,
-        constraints: BoxConstraints(
-          maxHeight: containerModel.maxHeight,
-          maxWidth: containerModel.maxWidth,
-          minHeight: containerModel.minHeight,
-          minWidth: containerModel.minWidth,
-        ),
-        child: Card(
-          child: child,
-        ),
+      child: Stack(
+        children: [
+          Container(
+              //  key: containerKey,
+              decoration: BoxDecoration(
+                color: containerModel.color,
+                border: Border.all(color: containerModel.color),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              constraints: BoxConstraints(
+                maxHeight: containerModel.maxHeight,
+                maxWidth: double.infinity,
+                minHeight: containerModel.minHeight,
+                minWidth: containerModel.minWidth,
+              ),
+              child: null),
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 2, sigmaY: 0),
+                child: Card(
+                  color: Colors.white60.withOpacity(0.6),
+                  elevation: 40.0,
+                  child: childs,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

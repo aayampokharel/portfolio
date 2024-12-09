@@ -22,7 +22,7 @@ Widget projectColumn({bool odd = false, Color? color = Colors.transparent}) {
                 //color: Color.fromARGB(255, 166, 8, 194),
                 color: color,
               ).returnCard(
-                  child: reposCard(
+                  childs: reposCard(
                 ind,
               ));
             } else if (ind % 2 == 0 && odd == false) {
@@ -34,7 +34,7 @@ Widget projectColumn({bool odd = false, Color? color = Colors.transparent}) {
                 //color: Color.fromARGB(255, 166, 8, 194),
                 color: color,
               ).returnCard(
-                  child: reposCard(
+                  childs: reposCard(
                 ind,
               ));
             }

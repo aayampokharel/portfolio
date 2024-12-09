@@ -89,7 +89,7 @@ class home extends StatelessWidget {
               ),
               Flexible(
                 child: Column(children: [
-                  projectColumn(odd: false, color: Colors.purple[300]),
+                  projectColumn(odd: false, color: Colors.brown[400]),
                 ]),
               ),
             ],
@@ -166,46 +166,90 @@ Widget assetSvg(String? string) {
     padding: const EdgeInsets.symmetric(
         horizontal: 10.0), // Adjusts spacing between logos
     child: LayoutBuilder(builder: (context, constraints) {
-      return Stack(
-        alignment: Alignment.center, // Centers content within the Stack
-        children: [
-          ContainerController.sizing(
-                  maxHeight: 200,
-                  minHeight: 50,
-                  maxWidth: 200,
-                  minWidth: 50,
-                  color: Colors.blueAccent.withOpacity(0.2))
-              .returnContainer(child: null, borderRadius: 15.0),
-
-          // Container(
-          //   decoration: BoxDecoration(
-          //     color: Colors.blueAccent
-          //         .withOpacity(0.2), // Background color for the container
-          //     borderRadius: BorderRadius.circular(15), // Rounded corners
-
-          //   ),
-          //   height: 100, // Adjust height to fit logos nicely
-          //   width: 100, // Adjust width for proper fitting
-          // ),
-          // Rotated logo inside the container
-          Transform.rotate(
-            angle: pi / 20, // Rotate by 45 degrees
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: SvgPicture.asset(
-                string,
-                semanticsLabel: "semanticText",
-                height: 150, // Control logo size
-                width: 150, // Control logo size
-                placeholderBuilder: (BuildContext context) => Container(
-                  padding: const EdgeInsets.all(30.0),
-                  child: const CircularProgressIndicator(),
-                ),
-              ),
-            ),
-          ),
-        ],
-      );
+      return SVGAnimation(string);
     }),
   );
+}
+
+class SVGAnimation extends StatefulWidget {
+  String string;
+
+  SVGAnimation(this.string);
+
+  @override
+  State<SVGAnimation> createState() => _SVGAnimationState();
+}
+
+class _SVGAnimationState extends State<SVGAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation _tween;
+  bool hover = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    _tween = Tween<double?>(begin: 0, end: 10).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+        animation: _tween,
+        builder: (context, child) {
+          return MouseRegion(
+            onEnter: ((event) {
+              hover = true;
+
+              _controller.forward();
+            }),
+            onExit: ((event) {
+              _controller.reverse();
+            }),
+            child: Stack(
+              alignment: Alignment.center, // Centers content within the Stack
+              clipBehavior: Clip.none,
+              children: [
+                ContainerController.sizing(
+                        maxHeight: 150,
+                        minHeight: 30,
+                        maxWidth: 150,
+                        minWidth: 30,
+                        color: Colors.blueAccent.withOpacity(0.2))
+                    .returnContainer(child: null, borderRadius: 15.0),
+                Positioned(
+                  top: (_tween.value == 0) ? null : _tween.value,
+                  left: (_tween.value == 0) ? null : _tween.value,
+                  child: Transform.rotate(
+                    angle: pi / 20, // Rotate by 45 degrees
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      child: SvgPicture.asset(
+                        widget.string,
+                        semanticsLabel: "semanticText",
+                        // height: 100, // Control logo size
+                        // width: 100, // Control logo size
+                        placeholderBuilder: (BuildContext context) => Container(
+                          padding: const EdgeInsets.all(30.0),
+                          child: const CircularProgressIndicator(),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        });
+  }
 }

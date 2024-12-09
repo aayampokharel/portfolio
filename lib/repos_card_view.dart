@@ -18,7 +18,7 @@ Future openURL(int i) async {
 //@ this is the simple card structure for repos .
 /// ORDER: Image , technology , description , github link .
 ///
-Widget reposCard(int index, {double? containerWidth}) {
+Widget reposCard(int index) {
   ///can remove containerWidth this was just usde or UI setting up width.
   return Column(
     children: [
