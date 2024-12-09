@@ -42,3 +42,24 @@ Widget HelloWidget(BuildContext context) {
     ),
   );
 }
+
+class LogoAnimation extends StatefulWidget {
+  const LogoAnimation({super.key});
+
+  @override
+  State<LogoAnimation> createState() => _LogoAnimationState();
+}
+
+class _LogoAnimationState extends State<LogoAnimation> {
+  var x;
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder(
+        tween: Tween<double>(begin: 250, end: 0),
+        duration: Duration(seconds: 3),
+        builder: (builder, value, child) {
+          return Positioned(child: Image.asset("Photos/"));
+        });
+  }
+}

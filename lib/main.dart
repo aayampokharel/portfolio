@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:port/about_me.dart';
 import 'package:port/app_bar_row.dart';
-
 import 'package:port/container_controller.dart';
 import 'package:port/hello_widget.dart';
-
 import 'package:port/projects_column.dart';
 import 'package:port/svg_links_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,7 +34,6 @@ class home extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           Stack(
-            //alignment: Alignment.ce,
             children: [
               ContainerController.sizing(
                 maxHeight: 500,
