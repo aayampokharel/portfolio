@@ -28,9 +28,18 @@ class portfolio extends StatelessWidget {
 //! be convertd to mediumwhite text or custom one as the text is too large to fit for MOBILE phones .
 class home extends StatelessWidget {
   @override
+
+//   Navbar Background	#0A3446	Strong and stable, anchors the design at the top.
+// Main Background	#E5E5E5	Light, neutral tone ensures content stands out.
+// Headings (Text)	#0A3446	Keeps headings bold and readable.
+// Body Text	#2D5C73	Softer contrast for a cohesive yet readable look.
+// Primary Buttons	#36B2B8	Bright and attention-grabbing for actions.
+// Hover States	#FFC857	Adds vibrancy and warmth to interactive elements.
+// Card Backgrounds	#FFFFFF or #2D5C73	Clean, subtle, and allows content to shine.
+// Icons/Highlights	#FFC857	Adds a cheerful, noticeable touch without overwhelming.
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xFFE5E5E5),
       body: SingleChildScrollView(
         child: Column(children: [
           Stack(
@@ -41,7 +50,7 @@ class home extends StatelessWidget {
                 minHeight: 500,
                 minWidth: 0,
               ).returnContainer(
-                img: "Photos/sunset.jpg",
+                img: "Photos/amayangri.jpg",
                 opacity: 0.7,
                 child: null,
               ),
@@ -53,7 +62,7 @@ class home extends StatelessWidget {
                         maxWidth: double.infinity,
                         minHeight: 0,
                         minWidth: 0,
-                        color: Color(0xFF4C3616).withOpacity(0.7))
+                        color: Color(0xFF0A3446).withOpacity(0.7))
                     .returnContainer(child: appBarRow()),
               ),
             ],
