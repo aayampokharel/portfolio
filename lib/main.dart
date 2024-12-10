@@ -9,7 +9,7 @@ import 'package:port/projects_column.dart';
 import 'package:port/svg_links_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:port/text_controller.dart';
-import 'dart:math'; //for pi
+import 'dart:math';
 
 void main() {
   runApp(portfolio());
@@ -39,7 +39,9 @@ class home extends StatelessWidget {
 // Icons/Highlights	#FFC857	Adds a cheerful, noticeable touch without overwhelming.
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE5E5E5),
+      backgroundColor: Color(0xff0f4c5c),
+      // backgroundColor: Color(0xff0D1F23),
+      // backgroundColor: Color(0xff1F4A53),
       body: SingleChildScrollView(
         child: Column(children: [
           Stack(
@@ -58,9 +60,9 @@ class home extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child: ContainerController.sizing(
-                        maxHeight: 200,
+                        maxHeight: 400,
                         maxWidth: double.infinity,
-                        minHeight: 0,
+                        minHeight: 80,
                         minWidth: 0,
                         color: Color(0xFF0A3446).withOpacity(0.7))
                     .returnContainer(child: appBarRow()),
@@ -72,36 +74,55 @@ class home extends StatelessWidget {
 
           //~aba aaucha Hello container ========
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 2.0),
             child: TextController.LargeWhite("ABOUT ME").returnText(),
           ),
-
+          Center(
+            child: Container(
+              height: 3,
+              width: MediaQuery.of(context).size.width * 0.9,
+              color: Colors.white38,
+            ),
+          ),
+          const SizedBox(height: 10),
           AboutMe(),
 
           //~aba aaucha projects collection container ========
-          TextController.LargeWhite("PROJECTS").returnText(),
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: TextController.LargeWhite("PROJECTS").returnText(),
+          ),
+          Center(
+            child: Container(
+              height: 3,
+              width: MediaQuery.of(context).size.width * 0.9,
+              color: Colors.white38,
+            ),
+          ),
           //~=====end of text project===
           //~
           //~
           //~
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Flexible(
-                child: Column(children: [
-                  SizedBox(
-                    height:
-                        300, //@ dont use such hard values . use soft calculate for 300 using query . 300 is a fraction of whole height or container height so make it in fraction
-                  ),
-                  projectColumn(odd: true, color: Colors.blue[400]),
-                ]),
-              ),
-              Flexible(
-                child: Column(children: [
-                  projectColumn(odd: false, color: Colors.brown[400]),
-                ]),
-              ),
-            ],
+          Container(
+            color: Colors
+                .transparent, //! this is to be same colored with card ko surrounding color .
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Flexible(
+                  child: Column(children: [
+                    //@ dont use such hard values . use soft calculate for 300 using query . 300 is a fraction of whole height or container height so make it in fraction
+
+                    projectColumn(odd: true, color: Colors.blue[400]),
+                  ]),
+                ),
+                Flexible(
+                  child: Column(children: [
+                    projectColumn(odd: false, color: Colors.brown[400]),
+                  ]),
+                ),
+              ],
+            ),
           ),
           //~end of PROJECTS===
           Padding(
@@ -151,15 +172,19 @@ class home extends StatelessWidget {
 
   Widget languageLogosRow(
       {String? img1, String? img2, String? img3, String? img4}) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
-        children: [
-          Expanded(child: assetSvg(img1)),
-          Expanded(child: assetSvg(img2)),
-          Expanded(child: assetSvg(img3)),
-          Expanded(child: assetSvg(img4)),
-        ],
+    return Container(
+      // color: Color(0xff0A3446), //! changed .....
+      color: Colors.transparent, //! changed .....
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          children: [
+            Expanded(child: assetSvg(img1)),
+            Expanded(child: assetSvg(img2)),
+            Expanded(child: assetSvg(img3)),
+            Expanded(child: assetSvg(img4)),
+          ],
+        ),
       ),
     );
   }
@@ -171,12 +196,14 @@ Widget assetSvg(String? string) {
   }
 
   //! if not null --> below.
-  return Padding(
-    padding: const EdgeInsets.symmetric(
-        horizontal: 10.0), // Adjusts spacing between logos
-    child: LayoutBuilder(builder: (context, constraints) {
-      return SVGAnimation(string);
-    }),
+  return Container(
+    color: Colors.transparent,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: LayoutBuilder(builder: (context, constraints) {
+        return SVGAnimation(string);
+      }),
+    ),
   );
 }
 

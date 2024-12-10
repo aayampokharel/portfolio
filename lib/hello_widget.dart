@@ -30,7 +30,8 @@ Widget HelloWidget(BuildContext context) {
           const SizedBox(
             height: 10,
           ),
-          ContainerController.button(buttonColor: Colors.green).returnButton(
+          ContainerController.button(buttonColor: Color(0xff36B2B8))
+              .returnButton(
             text: TextController.mediumWhite("review").returnText(),
             fnctToRun: null,
             padding: 15,

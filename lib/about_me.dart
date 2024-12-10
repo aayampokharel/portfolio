@@ -10,6 +10,7 @@ Widget AboutMe() {
     maxWidth: double.infinity,
     minHeight: 0,
     minWidth: 0,
+    color: Color(0xff0A3446),
   ).returnContainer(
     img: "Photos/mountain.jpg",
     opacity: 0.7,

@@ -5,10 +5,13 @@ import 'package:port/list_of_repos.dart';
 import 'package:port/repos_card_view.dart';
 
 Widget projectColumn({bool odd = false, Color? color = Colors.transparent}) {
-  return ContainerController.sizing(maxWidth: double.infinity).returnContainer(
-    child: Center(
-        child: ContainerController.sizing(minWidth: 410, maxWidth: 520)
-            .returnContainer(
+  return Center(
+    child: ContainerController.sizing(
+      minWidth: 410,
+      maxWidth: 520,
+      color: Colors.transparent,
+    ) //! to BE MERGED.
+        .returnContainer(
       child: ListView.builder(
           shrinkWrap: true,
           itemCount: reposModelList.length,
@@ -42,6 +45,6 @@ Widget projectColumn({bool odd = false, Color? color = Colors.transparent}) {
               height: 150,
             );
           }),
-    )),
+    ),
   );
 }
