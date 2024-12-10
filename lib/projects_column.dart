@@ -4,7 +4,7 @@ import 'package:port/container_controller.dart';
 import 'package:port/list_of_repos.dart';
 import 'package:port/repos_card_view.dart';
 
-Widget projectColumn({bool odd = false, Color? color = Colors.transparent}) {
+Widget projectColumn({bool odd = false}) {
   return Center(
     child: ContainerController.sizing(
       minWidth: 410,
@@ -23,11 +23,14 @@ Widget projectColumn({bool odd = false, Color? color = Colors.transparent}) {
                 minHeight: 200,
                 minWidth: 0,
                 //color: Color.fromARGB(255, 166, 8, 194),
-                color: color,
               ).returnCard(
                   childs: reposCard(
-                ind,
-              ));
+                    ind,
+                  ),
+                  colors: [
+                    Color.fromARGB(143, 73, 255, 1),
+                    Color.fromARGB(204, 17, 152, 255),
+                  ]);
             } else if (ind % 2 == 0 && odd == false) {
               return ContainerController.sizing(
                 maxHeight: 650,
@@ -35,11 +38,14 @@ Widget projectColumn({bool odd = false, Color? color = Colors.transparent}) {
                 minHeight: 200,
                 minWidth: 0,
                 //color: Color.fromARGB(255, 166, 8, 194),
-                color: color,
               ).returnCard(
                   childs: reposCard(
-                ind,
-              ));
+                    ind,
+                  ),
+                  colors: [
+                    Color.fromRGBO(0, 255, 229, 0.8), // Start color
+                    Color.fromARGB(204, 17, 152, 255),
+                  ]);
             }
             return const SizedBox(
               height: 150,

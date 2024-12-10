@@ -99,7 +99,7 @@ class ContainerController {
     );
   }
 
-  Widget returnCard({required Widget childs}) {
+  Widget returnCard({required Widget childs, required List<Color> colors}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Stack(
@@ -107,7 +107,10 @@ class ContainerController {
           Container(
               //  key: containerKey,
               decoration: BoxDecoration(
-                color: containerModel.color,
+                gradient: LinearGradient(colors: [
+                  colors[0],
+                  colors[1],
+                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                 border: Border.all(color: containerModel.color),
                 borderRadius: BorderRadius.circular(8.0),
               ),

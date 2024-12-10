@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:port/about_me.dart';
 import 'package:port/app_bar_row.dart';
@@ -39,8 +40,8 @@ class home extends StatelessWidget {
 // Icons/Highlights	#FFC857	Adds a cheerful, noticeable touch without overwhelming.
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff0f4c5c),
-      // backgroundColor: Color(0xff0D1F23),
+      //backgroundColor: //Color(0xff0f4c5c),
+      backgroundColor: Color(0xff0D1F23),
       // backgroundColor: Color(0xff1F4A53),
       body: SingleChildScrollView(
         child: Column(children: [
@@ -64,7 +65,7 @@ class home extends StatelessWidget {
                         maxWidth: double.infinity,
                         minHeight: 80,
                         minWidth: 0,
-                        color: Color(0xFF0A3446).withOpacity(0.7))
+                        color: Color(0xff0D1F23).withOpacity(0.7))
                     .returnContainer(child: appBarRow()),
               ),
             ],
@@ -113,12 +114,14 @@ class home extends StatelessWidget {
                   child: Column(children: [
                     //@ dont use such hard values . use soft calculate for 300 using query . 300 is a fraction of whole height or container height so make it in fraction
 
-                    projectColumn(odd: true, color: Colors.blue[400]),
+                    projectColumn(odd: true),
                   ]),
                 ),
                 Flexible(
                   child: Column(children: [
-                    projectColumn(odd: false, color: Colors.brown[400]),
+                    projectColumn(
+                      odd: false,
+                    ),
                   ]),
                 ),
               ],
@@ -262,14 +265,13 @@ class _SVGAnimationState extends State<SVGAnimation>
                         minWidth: 30,
                         color: Colors.blueAccent.withOpacity(0.2))
                     .returnContainer(child: null, borderRadius: 15.0),
-                Positioned(
-                  top: (_tween.value == 0) ? null : _tween.value,
-                  left: (_tween.value == 0) ? null : _tween.value,
+                Transform.translate(
+                  offset: Offset(-_tween.value, -_tween.value),
                   child: Transform.rotate(
                     angle: pi / 20, // Rotate by 45 degrees
                     child: Container(
-                      height: 100,
-                      width: 100,
+                      height: 100.0,
+                      width: 100.0,
                       child: SvgPicture.asset(
                         widget.string,
                         semanticsLabel: "semanticText",
