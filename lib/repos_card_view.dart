@@ -7,7 +7,22 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:port/text_controller.dart';
 
 Future openURL(int i) async {
-  final Uri url = Uri.parse(reposModelList[i].githubLink ?? "");
+  final Uri url;
+
+  url = Uri.parse(reposModelList[i].githubLink ?? "");
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw "couldn't launch provided url . contact the website. ";
+  }
+}
+
+Future youtubeURL(int i) async {
+  final Uri url;
+
+  url = Uri.parse(reposModelList[i].youtubeLink ?? "");
+
   if (await canLaunchUrl(url)) {
     await launchUrl(url);
   } else {
@@ -20,33 +35,55 @@ Future openURL(int i) async {
 ///
 Widget reposCard(int index) {
   ///can remove containerWidth this was just usde or UI setting up width.
-  return Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Image.asset("${reposModelList[index].imgURL}", height: 200),
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: technologyWidgets(index),
-      ),
-      Flexible(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: TextController.smallBlack(reposModelList[index].description!)
-              .returnText(justify: true),
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+    child: Column(
+      children: [
+        TextController.LargeWhite(reposModelList[index].topic!).returnText(),
+        Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ContainerController.sizing(maxHeight: 500, minHeight: 200)
+                .returnContainer(
+              child:
+                  Image.asset("${reposModelList[index].imgURL}", height: 500),
+            )),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: technologyWidgets(index),
         ),
-      ),
-      Center(
-        child: ContainerController.button(buttonColor: Colors.blue[700])
-            .returnButton(
-                text: TextController.mediumWhite("GitHub").returnText(),
-                fnctToRun: openURL,
-                indexOfReposInList: index,
-                padding: 20,
-                borderRadius: 20,
-                borderColor: Colors.blue[900]),
-      ),
-    ],
+        Flexible(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextController.smallBlack(reposModelList[index].description!)
+                .returnText(justify: true),
+          ),
+        ),
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ContainerController.button(buttonColor: Colors.blue[700])
+                  .returnButton(
+                      text: TextController.mediumWhite("GitHub").returnText(),
+                      fnctToRun: openURL,
+                      indexOfReposInList: index,
+                      padding: 20,
+                      borderRadius: 20,
+                      borderColor: Colors.blue[900]),
+              SizedBox(width: 10),
+              ContainerController.button(buttonColor: Colors.red[700])
+                  .returnButton(
+                      text: TextController.mediumWhite("Youtube Video")
+                          .returnText(),
+                      fnctToRun: youtubeURL,
+                      indexOfReposInList: index,
+                      padding: 20,
+                      borderRadius: 20,
+                      borderColor: Colors.red[900]),
+            ],
+          ),
+        ),
+      ],
+    ),
   );
 }

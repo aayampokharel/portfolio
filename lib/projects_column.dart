@@ -18,7 +18,7 @@ Widget projectColumn({bool odd = false}) {
           itemBuilder: (builder, ind) {
             if (ind % 2 != 0 && odd == true) {
               return ContainerController.sizing(
-                maxHeight: 650,
+                maxHeight: 1050,
                 maxWidth: 410,
                 minHeight: 200,
                 minWidth: 0,
@@ -33,7 +33,7 @@ Widget projectColumn({bool odd = false}) {
                   ]);
             } else if (ind % 2 == 0 && odd == false) {
               return ContainerController.sizing(
-                maxHeight: 650,
+                maxHeight: 1050,
                 maxWidth: 410,
                 minHeight: 200,
                 minWidth: 0,
