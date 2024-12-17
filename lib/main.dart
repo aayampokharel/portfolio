@@ -38,137 +38,142 @@ class home extends StatelessWidget {
 // Hover States	#FFC857	Adds vibrancy and warmth to interactive elements.
 // Card Backgrounds	#FFFFFF or #2D5C73	Clean, subtle, and allows content to shine.
 // Icons/Highlights	#FFC857	Adds a cheerful, noticeable touch without overwhelming.
+
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: //Color(0xff0f4c5c),
       backgroundColor: Color(0xff0D1F23),
       // backgroundColor: Color(0xff1F4A53),
       body: SingleChildScrollView(
-        child: Column(children: [
-          Stack(
-            children: [
-              ContainerController.sizing(
-                maxHeight: 500,
-                maxWidth: double.infinity,
-                minHeight: 500,
-                minWidth: 0,
-              ).returnContainer(
-                img: "Photos/amayangri.jpg",
-                opacity: 0.7,
-                child: null,
-              ),
-              HelloWidget(context),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                child: ContainerController.sizing(
-                        maxHeight: 400,
-                        maxWidth: double.infinity,
-                        minHeight: 80,
-                        minWidth: 0,
-                        color: Color(0xff0D1F23).withOpacity(0.7))
-                    .returnContainer(child: appBarRow()),
-              ),
-            ],
-          ),
-
-          //@this is just for setting height and width and color to container .tara appbar row sets the spacing and row to display inside the container
-
-          //~aba aaucha Hello container ========
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2.0),
-            child: TextController.LargeWhite("ABOUT ME").returnText(),
-          ),
-          Center(
-            child: Container(
-              height: 3,
-              width: MediaQuery.of(context).size.width * 0.9,
-              color: Colors.white38,
-            ),
-          ),
-          const SizedBox(height: 10),
-          AboutMe(),
-
-          //~aba aaucha projects collection container ========
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: TextController.LargeWhite("PROJECTS").returnText(),
-          ),
-          Center(
-            child: Container(
-              height: 3,
-              width: MediaQuery.of(context).size.width * 0.9,
-              color: Colors.white38,
-            ),
-          ),
-          //~=====end of text project===
-          //~
-          //~
-          //~
-          Container(
-            color: Colors
-                .transparent, //! this is to be same colored with card ko surrounding color .
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Column(children: [
+            Stack(
               children: [
-                Flexible(
-                  child: Column(children: [
-                    //@ dont use such hard values . use soft calculate for 300 using query . 300 is a fraction of whole height or container height so make it in fraction
-
-                    projectColumn(odd: true),
-                  ]),
+                ContainerController.sizing(
+                  maxHeight: 500,
+                  maxWidth: double.infinity,
+                  minHeight: 500,
+                  minWidth: 0,
+                ).returnContainer(
+                  img: "Photos/amayangri.jpg",
+                  opacity: 0.7,
+                  child: null,
                 ),
-                Flexible(
-                  child: Column(children: [
-                    projectColumn(
-                      odd: false,
-                    ),
-                  ]),
+                HelloWidget(context),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: ContainerController.sizing(
+                          maxHeight: 400,
+                          maxWidth: double.infinity,
+                          minHeight: 80,
+                          minWidth: 0,
+                          color: Color(0xff0D1F23).withOpacity(0.7))
+                      .returnContainer(child: appBarRow()),
                 ),
               ],
             ),
-          ),
-          //~end of PROJECTS===
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 25, 0, 15),
-            child:
-                TextController.LargeWhite("Technologies & Tools").returnText(),
-          ),
-          Center(
-            child: Container(
-              height: 3,
-              width: MediaQuery.of(context).size.width * 0.9,
-              color: Colors.white38,
-            ),
-          ),
-          languageLogosRow(
-            img1: svgLinksMap["dart"],
-            img2: svgLinksMap["flutter"],
-            img3: svgLinksMap["golang"],
-            img4: svgLinksMap["mysql"],
-          ),
-          languageLogosRow(
-            img2: svgLinksMap["git"],
-            img1: svgLinksMap["github"],
-            img3: svgLinksMap["postman"],
-            img4: svgLinksMap["c"],
-          ),
 
-          languageLogosRow(
-            img1: svgLinksMap["cpp"],
-            img2: svgLinksMap["vscode"],
-            img3: svgLinksMap["androidstudio"],
-            img4: svgLinksMap["html"],
-          ),
-          languageLogosRow(
-              img1: svgLinksMap["css"],
-              img2: svgLinksMap["javascript"],
-              img3: svgLinksMap["php"],
-              img4: svgLinksMap["photoshop"]),
-          languageLogosRow(
-            img1: svgLinksMap["adobexd"],
-            img2: svgLinksMap["adobeillustrator"],
-          ),
-        ]),
+            //@this is just for setting height and width and color to container .tara appbar row sets the spacing and row to display inside the container
+
+            //~aba aaucha Hello container ========
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 2.0),
+              child: TextController.LargeWhite("ABOUT ME").returnText(),
+            ),
+            Center(
+              child: Container(
+                height: 3,
+                width: MediaQuery.of(context).size.width * 0.9,
+                color: Colors.white38,
+              ),
+            ),
+            const SizedBox(height: 10),
+            AboutMe(),
+
+            //~aba aaucha projects collection container ========
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: TextController.LargeWhite("PROJECTS").returnText(),
+            ),
+            Center(
+              child: Container(
+                height: 3,
+                width: MediaQuery.of(context).size.width * 0.9,
+                color: Colors.white38,
+              ),
+            ),
+            //~=====end of text project===
+            //~
+            //~
+            //~
+            Container(
+              color: Colors
+                  .transparent, //! this is to be same colored with card ko surrounding color .
+              child: (constraints.maxWidth > 880)
+                  ? Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: Column(children: [
+                            //@ dont use such hard values . use soft calculate for 300 using query . 300 is a fraction of whole height or container height so make it in fraction
+
+                            projectColumn(odd: true),
+                          ]),
+                        ),
+                        Flexible(
+                          child: Column(children: [
+                            projectColumn(
+                              odd: false,
+                            ),
+                          ]),
+                        ),
+                      ],
+                    )
+                  : projectColumn(),
+            ),
+            //~end of PROJECTS===
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 25, 0, 15),
+              child: TextController.LargeWhite("Technologies & Tools")
+                  .returnText(),
+            ),
+            Center(
+              child: Container(
+                height: 3,
+                width: MediaQuery.of(context).size.width * 0.9,
+                color: Colors.white38,
+              ),
+            ),
+            languageLogosRow(
+              img1: svgLinksMap["dart"],
+              img2: svgLinksMap["flutter"],
+              img3: svgLinksMap["golang"],
+              img4: svgLinksMap["mysql"],
+            ),
+            languageLogosRow(
+              img2: svgLinksMap["git"],
+              img1: svgLinksMap["github"],
+              img3: svgLinksMap["postman"],
+              img4: svgLinksMap["c"],
+            ),
+
+            languageLogosRow(
+              img1: svgLinksMap["cpp"],
+              img2: svgLinksMap["vscode"],
+              img3: svgLinksMap["androidstudio"],
+              img4: svgLinksMap["html"],
+            ),
+            languageLogosRow(
+                img1: svgLinksMap["css"],
+                img2: svgLinksMap["javascript"],
+                img3: svgLinksMap["php"],
+                img4: svgLinksMap["photoshop"]),
+            languageLogosRow(
+              img1: svgLinksMap["adobexd"],
+              img2: svgLinksMap["adobeillustrator"],
+            ),
+          ]);
+        }),
       ),
     );
   }

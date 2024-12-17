@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:port/Container_model.dart';
 import 'package:flutter/material.dart';
+import 'package:port/app_bar_row.dart';
 
 class ContainerController {
   ContainerModel containerModel = ContainerModel();
@@ -54,6 +55,14 @@ class ContainerController {
       ),
       child: text,
     );
+  }
+
+  Widget returnUrlContainer(Widget? child, String url) {
+    return InkWell(
+        onTap: () {
+          linkUrl(url);
+        },
+        child: Container(child: child));
   }
 
   Widget returnContainer(

@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:port/container_controller.dart';
 import 'package:port/text_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+Future linkUrl(String str) async {
+  final Uri url;
+
+  url = Uri.parse(str);
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw "couldn't launch provided url . contact the website. ";
+  }
+}
 
 Widget appBarRow() {
   return Row(
@@ -12,22 +26,35 @@ Widget appBarRow() {
       //   height: 50,
       // ),
       const LogoAnimation(),
-      Row(
-        children: [
-          AppBarHover(TextController.mediumWhite("HOME").returnText()),
-          const SizedBox(
-            width: 20,
-          ),
-          AppBarHover(TextController.mediumWhite("ABOUT").returnText()),
-          const SizedBox(
-            width: 20,
-          ),
-          AppBarHover(TextController.mediumWhite("SIGN IN").returnText()),
-          const SizedBox(
-            width: 20,
-          ),
-        ],
-      ),
+      LayoutBuilder(builder: (context, constraints) {
+        return Row(
+          children: [
+            AppBarHover(ContainerController.sizing(
+                    maxHeight: 100, minHeight: 15, minWidth: 15, maxWidth: 100)
+                .returnUrlContainer(
+                    constraints.maxWidth > 600
+                        ? Image.asset('Photos/github.png',
+                            height: 80, width: 80)
+                        : Image.asset('Photos/github.png',
+                            height: 15, width: 15),
+                    "http://github.com/aayampokharel")),
+            const SizedBox(
+              width: 1,
+            ),
+            AppBarHover(ContainerController.sizing(
+                    maxHeight: 100, minHeight: 15, minWidth: 15, maxWidth: 100)
+                .returnUrlContainer(
+                    constraints.maxWidth > 600
+                        ? Image.asset('Photos/instagram.png',
+                            height: 100, width: 100)
+                        : Image.asset('Photos/instagram.png',
+                            height: 15, width: 15),
+                    "http://instagram.com/pokharel_aayam")),
+
+            // AppBarHover(TextController.mediumWhite("SIGN IN").returnText()),
+          ],
+        );
+      }),
     ],
   );
 }
