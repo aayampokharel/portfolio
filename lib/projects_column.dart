@@ -31,8 +31,8 @@ Widget projectColumn({bool odd = false}) {
                         ind,
                       ),
                       colors: [
-                        Color.fromARGB(143, 73, 255, 1),
-                        Color.fromARGB(204, 17, 152, 255),
+                        const Color(0xff36B2B8),
+                        const Color(0xffFFC857),
                       ]);
                 } else if (ind % 2 == 0 && !odd) {
                   return ContainerController.sizing(
@@ -46,8 +46,8 @@ Widget projectColumn({bool odd = false}) {
                         ind,
                       ),
                       colors: [
-                        Color.fromRGBO(0, 255, 229, 0.8), // Start color
-                        Color.fromARGB(204, 17, 152, 255),
+                        const Color(0xff9B5DE5),
+                        const Color(0xff36B2B8),
                       ]);
                 } else {
                   return const SizedBox(
@@ -78,8 +78,8 @@ Widget projectColumn({bool odd = false}) {
                       ind,
                     ),
                     colors: [
-                      Color.fromRGBO(0, 255, 229, 0.8), // Start color
-                      Color.fromARGB(204, 17, 152, 255),
+                      const Color(0xff9B5DE5),
+                      const Color(0xff36B2B8),
                     ]);
               }),
         );

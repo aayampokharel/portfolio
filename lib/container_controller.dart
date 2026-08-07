@@ -35,6 +35,8 @@ class ContainerController {
     double? padding,
     double? borderRadius,
     Color? borderColor,
+    double? height,
+    double? minWidth,
   }) {
     return ElevatedButton(
       onPressed: () {
@@ -42,6 +44,9 @@ class ContainerController {
         //@ this fnct runs if itsnot null.
       },
       style: ButtonStyle(
+        minimumSize: MaterialStatePropertyAll(
+          Size(minWidth ?? 0, height ?? 0),
+        ),
         padding: MaterialStatePropertyAll(
           EdgeInsets.all(padding ?? 10),
         ),
@@ -136,7 +141,7 @@ class ContainerController {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 2, sigmaY: 0),
                 child: Card(
-                  color: Colors.white60.withOpacity(0.6),
+                  color: const Color(0xFF0B222A).withValues(alpha: 0.82),
                   elevation: 40.0,
                   child: childs,
                 ),

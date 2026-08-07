@@ -30,10 +30,15 @@ class TextController {
   }
 
   TextController.custom(this.text,
-      {Color color = Colors.black, double fontSize = 10}) {
+      {Color color = Colors.black,
+      double fontSize = 10,
+      FontWeight fontWeight = FontWeight.normal,
+      double letterSpacing = 0}) {
     model.text = text;
     model.color = color;
     model.fontSize = fontSize;
+    model.fontWeight = fontWeight;
+    model.letterSpacing = letterSpacing;
   }
 
   Text returnText({bool justify = false, String fontFamily = "Inter"}) {
@@ -44,7 +49,9 @@ class TextController {
           //fontFamily: "Cursive",
           fontFamily: model.fontFamily,
           fontSize: model.fontSize,
-          color: model.color),
+          color: model.color,
+          fontWeight: model.fontWeight,
+          letterSpacing: model.letterSpacing),
       textAlign: justify ? TextAlign.justify : TextAlign.left,
       softWrap: true,
       overflow: TextOverflow.visible,

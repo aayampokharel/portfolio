@@ -31,6 +31,18 @@ Future youtubeURL(int i) async {
   }
 }
 
+Future liveURL(int i) async {
+  final Uri url;
+
+  url = Uri.parse(reposModelList[i].liveLink ?? "");
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw "couldn't launch provided url . contact the website. ";
+  }
+}
+
 //@ this is the simple card structure for repos .
 /// ORDER: Image , technology , description , github link .
 ///
@@ -50,17 +62,20 @@ Widget reposCard(int index) {
                     ContainerController.sizing(maxHeight: 500, minHeight: 200)
                         .returnContainer(
                   child: Image.asset("${reposModelList[index].imgURL}",
-                      height: 500),
+                      height: 500, fit: BoxFit.contain),
                 )),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Wrap(
+              alignment: WrapAlignment.center,
+              runSpacing: 4,
               children: technologyWidgets(index),
             ),
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: TextController.smallBlack(
-                        reposModelList[index].description!)
+                child: TextController.custom(
+                        reposModelList[index].description!,
+                        color: const Color(0xFFC8DCE2),
+                        fontSize: 16)
                     .returnText(justify: true),
               ),
             ),
@@ -68,25 +83,42 @@ Widget reposCard(int index) {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ContainerController.button(buttonColor: Colors.blue[700])
-                      .returnButton(
-                          text:
-                              TextController.mediumWhite("GitHub").returnText(),
-                          fnctToRun: openURL,
-                          indexOfReposInList: index,
-                          padding: 20,
-                          borderRadius: 20,
-                          borderColor: Colors.blue[900]),
-                  SizedBox(width: 10),
-                  ContainerController.button(buttonColor: Colors.red[700])
-                      .returnButton(
-                          text: TextController.mediumWhite("Youtube Video")
-                              .returnText(),
-                          fnctToRun: youtubeURL,
-                          indexOfReposInList: index,
-                          padding: 20,
-                          borderRadius: 20,
-                          borderColor: Colors.red[900]),
+                  if (reposModelList[index].githubLink != null)
+                    ContainerController.button(buttonColor: Colors.blue[700])
+                        .returnButton(
+                            text:
+                                TextController.mediumWhite("GitHub").returnText(),
+                            fnctToRun: openURL,
+                            indexOfReposInList: index,
+                            padding: 20,
+                            borderRadius: 20,
+                            borderColor: Colors.blue[900]),
+                  if (reposModelList[index].githubLink != null)
+                    const SizedBox(width: 10),
+                  if (reposModelList[index].youtubeLink != null)
+                    ContainerController.button(buttonColor: Colors.red[700])
+                        .returnButton(
+                            text:
+                                TextController.mediumWhite("Youtube Video")
+                                    .returnText(),
+                            fnctToRun: youtubeURL,
+                            indexOfReposInList: index,
+                            padding: 20,
+                            borderRadius: 20,
+                            borderColor: Colors.red[900]),
+                  if (reposModelList[index].youtubeLink != null)
+                    const SizedBox(width: 10),
+                  if (reposModelList[index].liveLink != null)
+                    ContainerController.button(
+                            buttonColor: const Color(0xff36B2B8))
+                        .returnButton(
+                            text: TextController.mediumWhite("View Live")
+                                .returnText(),
+                            fnctToRun: liveURL,
+                            indexOfReposInList: index,
+                            padding: 20,
+                            borderRadius: 20,
+                            borderColor: const Color(0xff0A3446)),
                 ],
               ),
             ),
@@ -103,7 +135,7 @@ Widget reposCard(int index) {
                     ContainerController.sizing(maxHeight: 400, minHeight: 200)
                         .returnContainer(
                   child: Image.asset("${reposModelList[index].imgURL}",
-                      height: 400),
+                      height: 400, fit: BoxFit.contain),
                 )),
             Wrap(
               alignment: WrapAlignment.center,
@@ -113,8 +145,10 @@ Widget reposCard(int index) {
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: TextController.smallBlack(
-                        reposModelList[index].description!)
+                child: TextController.custom(
+                        reposModelList[index].description!,
+                        color: const Color(0xFFC0DCE2),
+                        fontSize: 15)
                     .returnText(justify: true),
               ),
             ),
@@ -122,27 +156,44 @@ Widget reposCard(int index) {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ContainerController.button(buttonColor: Colors.blue[700])
-                      .returnButton(
-                          text: TextController.custom("GitHub",
-                                  color: Colors.white, fontSize: 16)
-                              .returnText(),
-                          fnctToRun: openURL,
-                          indexOfReposInList: index,
-                          padding: 20,
-                          borderRadius: 20,
-                          borderColor: Colors.blue[900]),
-                  SizedBox(width: 10),
-                  ContainerController.button(buttonColor: Colors.red[700])
-                      .returnButton(
-                          text: TextController.custom("Youtube Link",
-                                  color: Colors.white, fontSize: 16)
-                              .returnText(),
-                          fnctToRun: youtubeURL,
-                          indexOfReposInList: index,
-                          padding: 20,
-                          borderRadius: 20,
-                          borderColor: Colors.red[900]),
+                  if (reposModelList[index].githubLink != null)
+                    ContainerController.button(buttonColor: Colors.blue[700])
+                        .returnButton(
+                            text: TextController.custom("GitHub",
+                                    color: Colors.white, fontSize: 16)
+                                .returnText(),
+                            fnctToRun: openURL,
+                            indexOfReposInList: index,
+                            padding: 20,
+                            borderRadius: 20,
+                            borderColor: Colors.blue[900]),
+                  if (reposModelList[index].githubLink != null)
+                    const SizedBox(width: 10),
+                  if (reposModelList[index].youtubeLink != null)
+                    ContainerController.button(buttonColor: Colors.red[700])
+                        .returnButton(
+                            text: TextController.custom("Youtube Link",
+                                    color: Colors.white, fontSize: 16)
+                                .returnText(),
+                            fnctToRun: youtubeURL,
+                            indexOfReposInList: index,
+                            padding: 20,
+                            borderRadius: 20,
+                            borderColor: Colors.red[900]),
+                  if (reposModelList[index].youtubeLink != null)
+                    const SizedBox(width: 10),
+                  if (reposModelList[index].liveLink != null)
+                    ContainerController.button(
+                            buttonColor: const Color(0xff36B2B8))
+                        .returnButton(
+                            text: TextController.custom("View Live",
+                                    color: Colors.white, fontSize: 16)
+                                .returnText(),
+                            fnctToRun: liveURL,
+                            indexOfReposInList: index,
+                            padding: 20,
+                            borderRadius: 20,
+                            borderColor: const Color(0xff0A3446)),
                 ],
               ),
             ),
