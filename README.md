@@ -6,7 +6,7 @@ Personal portfolio site, rebuilt as a **single hand-written `index.html`** — n
 
 ## What's inside
 
-- **Hero** — real GitHub avatar with a rotating gradient ring, and a terminal that types `go run main.go` before revealing the tagline: *Building backend systems, one goroutine at a time.*
+- **Hero** — my own photo (`Photos/me.jpeg`, square-cropped and compressed to 23 KB WebP) inside a rotating gradient ring, and a terminal that types `go run main.go` before revealing the tagline: *Building backend systems, one goroutine at a time.*
 - **About / Stack / Experience / Work / Stats / Contact** — content sourced from my GitHub profile: Go backend work at AsterGaze Technologies, SafalTopper (live, 100+ students), and DocSniff (permissioned consortium blockchain — PoW + PBFT, raw-TCP P2P, RSA + Merkle trees).
 - **Featured projects** — SafalTopper and DocSniff with screenshots, plus 7 more open-source repos.
 - **GitHub stats** — live streak and stats cards, lazy-loaded.
